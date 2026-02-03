@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will YOU BE MY VALENTINES</title>
+    <link rel="stylesheet" href="valentine-style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Will YOU BE MY VALENTINES</h1>
+        <img src="image1.jfif" alt="Lovey dovey couple" class="hero">
+
+        <div class="buttons">
+            <button class="btn yes-btn" id="yesBtn">Yes</button>
+            <button class="btn no-btn" id="noBtn">No</button>
+        </div>
+    </div>
+
+    <script>
+        let noCount = 0;
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+
+        noBtn.addEventListener('click', function() {
+            noCount++;
+            // set flag so next page can detect a prior no
+            localStorage.setItem('noClicked', '1');
+
+            if (noCount === 1) {
+                noBtn.textContent = 'Sorry, try again';
+            } else if (noCount === 2) {
+                noBtn.textContent = 'Really';
+            } else if (noCount === 3) {
+                noBtn.textContent = 'No is not an answer';
+            } else if (noCount > 3) {
+                noCount = 0;
+                noBtn.textContent = 'No';
+                localStorage.removeItem('noClicked');
+            }
+
+            // move to a random position within viewport (keep safe margins)
+            const pad = 20;
+            const maxX = Math.max(window.innerWidth - noBtn.offsetWidth - pad, pad);
+            const maxY = Math.max(window.innerHeight - noBtn.offsetHeight - pad, pad);
+            const randX = Math.floor(Math.random() * (maxX - pad)) + pad;
+            const randY = Math.floor(Math.random() * (maxY - pad)) + pad;
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randX + 'px';
+            noBtn.style.top = randY + 'px';
+        });
+
+        yesBtn.addEventListener('click', function() {
+            window.location.href = 'yes.html';
+        });
+    </script>
+</body>
+</html>
