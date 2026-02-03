@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Said Yes!</title>
+    <link rel="stylesheet" href="yes-style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Yaaay!</h1>
+        <p class="message" id="message">You Have Made Me the happiest Man On earth</p>
+        <img id="heroImg" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&h=600&fit=crop" alt="Couple hugging" class="couple-image">
+        <a href="index.html" class="back-btn">Back to Home</a>
+    </div>
+
+    <script>
+        // Show a different message if the user clicked No earlier
+        const noFlag = localStorage.getItem('noClicked');
+        const title = document.getElementById('title');
+        const message = document.getElementById('message');
+        const img = document.getElementById('heroImg');
+
+        if (noFlag) {
+            title.textContent = 'I knew you would come around';
+            message.textContent = 'You have made me so happy thank you, for being my valentine.';
+            img.src = 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=900&q=80';
+            // clear flag after showing the message
+            localStorage.removeItem('noClicked');
+        } else {
+            title.textContent = 'Yaaaay You Have Made Me the Happiest Man On Earth';
+            message.textContent = '';
+            img.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>If You're In A Good Mood</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="intro container">
+        <h1><strong>If you are in a good mood press Continue</strong></h1>
+
+        <img src="image2.jfif" alt="Couple holding hands at sunset" class="hero-image">
+
+        <div class="buttons">
+            <button class="btn continue-btn" id="continueBtn">Continue</button>
+            <button class="btn notnow-btn" id="notNowBtn">Not Right Now</button>
+        </div>
+
+        <p id="notNowMsg" class="notnow-msg hidden">Sorry you don’t have a choice, please continue.</p>
+    </div>
+
+    <script>
+        document.getElementById('continueBtn').addEventListener('click', function() {
+            // clear any previous no-click flag for a fresh start
+            localStorage.removeItem('noClicked');
+            window.location.href = 'valentine.html';
+        });
+
+        document.getElementById('notNowBtn').addEventListener('click', function() {
+            document.getElementById('notNowMsg').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
